@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manorama Six Feet Under — My Favourite Movie</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --sand:    #c8a96e;
+      --dust:    #8c6a3f;
+      --shadow:  #1a120a;
+      --noir:    #0e0b07;
+      --blood:   #7a1f1f;
+      --pale:    #e8dcc8;
+      --mist:    #2e2416;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background-color: var(--noir);
+      color: var(--pale);
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 300;
+      letter-spacing: 0.04em;
+      overflow-x: hidden;
+    }
+
+    /* ── GRAIN OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 999; pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      opacity: 0.35;
+    }
+
+    /* ── HERO ── */
+    header {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 4rem 6vw;
+      background:
+        linear-gradient(to top, var(--noir) 0%, transparent 55%),
+        linear-gradient(160deg, #3b2508 0%, #7a4e1e 40%, #c8903a 70%, #e8c06a 100%);
+      overflow: hidden;
+    }
+
+    header::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 70% 30%, rgba(200,169,110,0.15) 0%, transparent 60%);
+    }
+
+    .badge {
+      display: inline-block;
+      border: 1px solid var(--sand);
+      color: var(--sand);
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 8vw, 7rem);
+      line-height: 1.0;
+      font-weight: 700;
+      color: var(--pale);
+      text-shadow: 0 4px 40px rgba(0,0,0,0.8);
+      position: relative; z-index: 1;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--sand);
+    }
+
+    .tagline {
+      margin-top: 1.2rem;
+      font-size: 0.85rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--dust);
+      position: relative; z-index: 1;
+    }
+
+    .meta-row {
+      margin-top: 2rem;
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      font-size: 0.78rem;
+      letter-spacing: 0.15em;
+      color: var(--sand);
+      text-transform: uppercase;
+      position: relative; z-index: 1;
+    }
+
+    .meta-row span { opacity: 0.7; }
+
+    /* ── DIVIDER ── */
+    .divider {
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(to right, transparent, var(--dust), transparent);
+      margin: 3rem 0;
+      opacity: 0.5;
+    }
+
+    /* ── SECTIONS ── */
+    main { padding: 5rem 6vw; max-width: 960px; margin: 0 auto; }
+
+    section { margin-bottom: 4rem; }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: var(--sand);
+      margin-bottom: 1.4rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    h2::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, var(--dust), transparent);
+      opacity: 0.5;
+    }
+
+    p {
+      font-size: 1.05rem;
+      line-height: 1.9;
+      color: #c9bbaa;
+    }
+
+    /* ── QUOTE BLOCK ── */
+    blockquote {
+      border-left: 3px solid var(--blood);
+      padding: 1rem 1.5rem;
+      margin: 2rem 0;
+      background: rgba(122,31,31,0.08);
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--sand);
+      line-height: 1.8;
+    }
+
+    /* ── CAST TABLE ── */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+      margin-top: 1rem;
+    }
+
+    thead tr {
+      border-bottom: 1px solid var(--dust);
+    }
+
+    th {
+      text-align: left;
+      padding: 0.6rem 1rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--sand);
+      font-weight: 600;
+    }
+
+    td {
+      padding: 0.6rem 1rem;
+      color: #bfb09a;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    tr:hover td { background: rgba(200,169,110,0.05); }
+
+    /* ── THEMES LIST ── */
+    ul {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6rem;
+    }
+
+    ul li {
+      font-size: 0.92rem;
+      color: #bfb09a;
+      padding: 0.5rem 0.8rem;
+      border: 1px solid rgba(200,169,110,0.15);
+    }
+
+    ul li::before {
+      content: '◈ ';
+      color: var(--blood);
+      font-size: 0.7rem;
+    }
+
+    /* ── MY TAKE ── */
+    .rating-row {
+      display: flex;
+      align-items: baseline;
+      gap: 0.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .stars {
+      color: var(--sand);
+      font-size: 1.3rem;
+      letter-spacing: 0.1em;
+    }
+
+    .score {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      color: var(--pale);
+    }
+
+    .score sup {
+      font-size: 1rem;
+      color: var(--dust);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 3rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(200,169,110,0.3);
+      border-top: 1px solid rgba(200,169,110,0.1);
+    }
+
+    address {
+      font-style: normal;
+      color: var(--dust);
+      margin-top: 0.3rem;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- ══ HERO ══ -->
+  <header>
+    <span class="badge">My Favourite Movie &nbsp;·&nbsp; Lab Activity 1</span>
+    <h1>Manorama<br /><em>Six Feet Under</em></h1>
+    <p class="tagline">In the desert, nothing is as it seems</p>
+    <div class="meta-row">
+      <span>2007</span>
+      <span>Dir. Navdeep Singh</span>
+      <span>Neo-Noir · Crime Thriller</span>
+      <span>Hindi</span>
+    </div>
+  </header>
+
+  <!-- ══ MAIN ══ -->
+  <main>
+
+    <!-- About the Movie -->
+    <section>
+      <h2>About the Film</h2>
+      <p>
+        <strong>Manorama Six Feet Under</strong> is a 2007 Indian neo-noir crime thriller directed
+        by Navdeep Singh in his feature debut. Set in the parched, desolate town of <em>Lakhot</em>
+        in Rajasthan, the film follows <strong>Satyaveer Singh Randhawa</strong> — a suspended
+        government engineer and failed crime novelist — who is drawn into a labyrinth of lies,
+        corruption, and murder after accepting a seemingly simple spying assignment.
+      </p>
+
+      <blockquote>
+        "There is a god up there, and he will listen one day. All you have to ask is —
+        <em>Is anyone there?</em>"
+        <br /><small>— Satyaveer, closing monologue</small>
+      </blockquote>
+
+      <p>
+        The film draws structural inspiration from Roman Polanski's <em>Chinatown</em> (1974),
+        transplanting its moral ambiguity and institutional rot into a uniquely Indian landscape
+        of caste, drought, and political power. It is widely regarded as one of Bollywood's finest
+        indie thrillers — stark, atmospheric, and deeply human.
+      </p>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Cast Table -->
+    <section>
+      <h2>Cast</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Actor</th>
+            <th>Character</th>
+            <th>Role</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Abhay Deol</td><td>Satyaveer Singh Randhawa</td><td>Protagonist — failed engineer &amp; writer</td></tr>
+          <tr><td>Raima Sen</td><td>Sheetal</td><td>Manorama's mysterious roommate</td></tr>
+          <tr><td>Gul Panag</td><td>Nimmi</td><td>Satyaveer's pragmatic wife</td></tr>
+          <tr><td>Sarika</td><td>Manorama</td><td>The woman at the centre of it all</td></tr>
+          <tr><td>Kulbhushan Kharbanda</td><td>P.P. Rathore</td><td>The corrupt Irrigation Minister</td></tr>
+          <tr><td>Vinay Pathak</td><td>Brij Mohan</td><td>The wisecracking cop &amp; brother-in-law</td></tr>
+          <tr><td>Nawazuddin Siddiqui</td><td>Supporting</td><td>Early career role</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Themes -->
+    <section>
+      <h2>Themes &amp; Motifs</h2>
+      <ul>
+        <li>Corruption &amp; Institutional rot</li>
+        <li>Desert as metaphor for despair</li>
+        <li>The failed everyman hero</li>
+        <li>Moral ambiguity</li>
+        <li>Water scarcity &amp; power</li>
+        <li>Betrayal &amp; deception</li>
+        <li>Small-town suffocation</li>
+        <li>Neo-noir storytelling</li>
+      </ul>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Why I love it -->
+    <section>
+      <h2>Why I Love This Film</h2>
+
+      <div class="rating-row">
+        <span class="score">9.5<sup>/10</sup></span>
+        <span class="stars">★ ★ ★ ★ ★</span>
+      </div>
+
+      <p>
+        What makes <em>Manorama Six Feet Under</em> unforgettable is its refusal to be anything
+        other than itself. There are no item numbers, no over-the-top action — only a man, a
+        desert, and a truth buried somewhere beneath the sand. The cinematography captures
+        Rajasthan not as a postcard but as a pressure cooker — dry, claustrophobic, and full
+        of secrets.
+      </p>
+      <p>
+        Abhay Deol's performance is quietly magnetic. He plays Satyaveer not as a hero but as
+        an ordinary man stumbling through extraordinary circumstances — and that ordinariness
+        is exactly what makes the film so gripping. It is the kind of movie that lingers long
+        after the credits roll.
+      </p>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Quick Facts -->
+    <section>
+      <h2>Quick Facts</h2>
+      <dl>
+        <dt style="color:var(--sand); font-size:0.75rem; letter-spacing:0.15em; text-transform:uppercase; margin-top:0.8rem;">Release Date</dt>
+        <dd style="color:#bfb09a; margin-top:0.2rem;">21 September 2007</dd>
+
+        <dt style="color:var(--sand); font-size:0.75rem; letter-spacing:0.15em; text-transform:uppercase; margin-top:0.8rem;">Language</dt>
+        <dd style="color:#bfb09a; margin-top:0.2rem;">Hindi</dd>
+
+        <dt style="color:var(--sand); font-size:0.75rem; letter-spacing:0.15em; text-transform:uppercase; margin-top:0.8rem;">Inspired By</dt>
+        <dd style="color:#bfb09a; margin-top:0.2rem;">Chinatown (1974), dir. Roman Polanski</dd>
+
+        <dt style="color:var(--sand); font-size:0.75rem; letter-spacing:0.15em; text-transform:uppercase; margin-top:0.8rem;">IMDb Rating</dt>
+        <dd style="color:#bfb09a; margin-top:0.2rem;">7.5 / 10</dd>
+
+        <dt style="color:var(--sand); font-size:0.75rem; letter-spacing:0.15em; text-transform:uppercase; margin-top:0.8rem;">Where to Watch</dt>
+        <dd style="color:#bfb09a; margin-top:0.2rem;">Netflix India</dd>
+      </dl>
+    </section>
+
+  </main>
+
+  <!-- ══ FOOTER ══ -->
+  <footer>
+    <p>Lab Activity 1 &nbsp;·&nbsp; My Favourite Movie</p>
+    <address>Made with HTML &amp; CSS &nbsp;·&nbsp; 2025</address>
+  </footer>
+
+</body>
+</html>
